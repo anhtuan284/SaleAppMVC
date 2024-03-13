@@ -5,7 +5,13 @@
 package com.tbat.hibernatedemo;
 
 import com.tbat.pojo.Category;
+import com.tbat.pojo.Comment;
+import com.tbat.pojo.OrderDetail;
+import com.tbat.pojo.ProdTag;
 import com.tbat.pojo.Product;
+import com.tbat.pojo.SaleOrder;
+import com.tbat.pojo.Tag;
+import com.tbat.pojo.User;
 import java.util.Properties;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -32,6 +38,12 @@ public class HibernateUtils {
         conf.setProperties(props);
         conf.addAnnotatedClass(Category.class);
         conf.addAnnotatedClass(Product.class);
+        conf.addAnnotatedClass(Tag.class);
+        conf.addAnnotatedClass(SaleOrder.class);
+        conf.addAnnotatedClass(OrderDetail.class);
+        conf.addAnnotatedClass(User.class);
+        conf.addAnnotatedClass(Comment.class);
+        conf.addAnnotatedClass(ProdTag.class);
         
         ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(conf.getProperties()).build();
         factory = conf.buildSessionFactory(registry);

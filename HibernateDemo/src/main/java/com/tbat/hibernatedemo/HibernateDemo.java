@@ -7,7 +7,9 @@ package com.tbat.hibernatedemo;
 
 import com.tbat.pojo.Category;
 import com.tbat.repository.impl.ProductRepositoryImpl;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Query;
 import org.hibernate.Session;
 
@@ -25,8 +27,16 @@ public class HibernateDemo {
 //            
 //            cates.forEach(c -> System.out.print(c));
 //        }
+//        ProductRepositoryImpl s = new ProductRepositoryImpl();
+//        s.getProducts(null).forEach(p -> System.out.printf("%s - %s - %s\n", p.getName(), 
+//                p.getPrice(), p.getCategoryId().getName()));
         ProductRepositoryImpl s = new ProductRepositoryImpl();
-        s.getProducts(null).forEach(p -> System.out.printf("%s - %.1f - %s\n", p.getName(), 
-                p.getPrice(), p.getCategory().getName()));
+        
+        Map<String, String> params = new HashMap<>();
+        params.put("kw", "Galaxy");
+        params.put("fromPrice", "18000000");
+        params.put("toPrice", "20000000");
+        
+        s.getProducts(params).forEach(p -> System.out.println(p.getId() + " - " + p.getName() + " - " + p.getPrice()));
     }
 }
